@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -55,7 +55,7 @@ public class SetMatrixZero {
         // set the array
         if (i != 0) {
           if (iSet.contains(i - 1)) {
-            arr.get(i - 1).set(j, 0);
+            // arr.get(i - 1).set(j, 0);
           }
         }
       }
@@ -63,7 +63,7 @@ public class SetMatrixZero {
 
     for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
-        if (jSet.contains(j)) arr.get(i).set(j, 0);
+        // if (jSet.contains(j)) arr.get(i).set(j, 0);
       }
     }
     System.out.println(Arrays.deepToString(arr));
