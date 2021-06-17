@@ -1,5 +1,3 @@
-import jdk.incubator.jpackage.main.Main;
-
 public class MatrixMedian {
 
   public static void main(String[] args) {

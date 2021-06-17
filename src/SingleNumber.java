@@ -1,4 +1,3 @@
-import jdk.incubator.jpackage.internal.resources.ResourceLocator;
 
 public class SingleNumber {
 
