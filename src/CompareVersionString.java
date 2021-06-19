@@ -1,8 +1,11 @@
+import java.math.BigInteger;
+import java.util.Arrays;
+
 public class CompareVersionString {
 
   public static void main(String[] args) {
     String a = "13.0";
-    String b = "13.0.0";
+    String b = "13.0.8";
 
     System.out.println(whoIsBig(a, b));
   }
@@ -11,26 +14,29 @@ public class CompareVersionString {
     int i = 0;
     int j = 0;
 
-    int lastDotI = 0;
-    int lastDotJ = 0;
-    int dotCount = 0;
+    String[] aArr = a.split("\\.");
+    String[] bArr = b.split("\\.");
 
-    while ((i < a.length() && j < b.length()) || dotCount < 3) {
-      if ((a.charAt(i) == '.' && b.charAt(j) == '.') || dotCount < 3) {
-        ++dotCount;
-        int res = compareLevel(
-          a.substring(lastDotI, i),
-          b.substring(lastDotJ, j)
-        );
-        lastDotI = ++i;
-        lastDotJ = ++j;
-        if (res == 0) continue;
-        if (res > 0) return 1; else return -1;
+    System.out.println(Arrays.toString(aArr));
+    System.out.println(Arrays.toString(bArr));
+
+    while (i < aArr.length || j < bArr.length) {
+      // comapre a level
+      int res = compareLevel(
+        (i < aArr.length) ? aArr[i] : "0",
+        (j < bArr.length) ? bArr[j] : "0"
+      );
+      // if 0 continue to next level
+      if (res == 0) {
+        if (i < aArr.length) ++i;
+        if (j < bArr.length) ++j;
+        continue;
+      } else {
+        return res;
       }
-
-      if (a.charAt(i) != '.') ++i;
-      if (b.charAt(j) != '.') ++j;
+      // if !0 return the result right then and there
     }
+
     return 0;
   }
 
@@ -38,12 +44,8 @@ public class CompareVersionString {
     // if a > b return 1
     // else if b > a  return -1
     // else return 0
-    if (a.length() > 0 && b.length() > 0) {
-      long x = Long.parseLong(a);
-      long y = Long.parseLong(b);
-      if (x > y) return 1; else if (y > x) return -1; else return 0;
-    } else {
-      return -1;
-    }
+    BigInteger x = new BigInteger(a);
+    BigInteger y = new BigInteger(b);
+    return x.compareTo(y);
   }
 }
