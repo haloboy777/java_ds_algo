@@ -1,10 +1,7 @@
-import java.util.Arrays;
-
 public class StrStr {
 
   static int mod = 1000_000_007;
-  static long[] inv;
-  static double[] arr;
+  static long[] arr;
 
   public static void main(String[] args) {
     String a =
@@ -12,14 +9,24 @@ public class StrStr {
     String match = "bba";
     // I need to solve this problem with string hashing
     initalize(a);
-    
+    long p_power = 1;
+    long p = 31;
+    long needleHash = stringHash(match);
     int L, R;
-    for (L = 0, R = match.size() - 1; R < a.size(); L++, R++) {
-      if (needleHash == substringHash(L, R)) ;
+    for (L = 0, R = match.length() - 1; R < a.length(); L++, R++) {
+      if (
+        (needleHash * p_power) % mod == substringHash(L, R)
+      ) System.out.println(L);
+      p_power = (p * p_power) % mod;
     }
+  }
 
-    System.out.println(stringHash(match));
-    System.out.println(power(12, 2));
+  static long substringHash(int L, int R) {
+    long hash = arr[R];
+
+    if (L > 0) hash = (arr[R] - arr[L - 1] + mod) % mod;
+
+    return hash;
   }
 
   static long stringHash(String a) {
@@ -36,20 +43,17 @@ public class StrStr {
   }
 
   static void initalize(String a) {
-    arr = new double[a.length()];
+    arr = new long[a.length()];
     int p = 31;
     long p_power = 1;
-    inv[0] = 1;
     arr[0] = a.charAt(0) - 'a' + 1;
     int i = 1;
     while (i < a.length()) {
       p_power = (p_power * p) % mod;
-      inv[i] = power(p_power, mod - 2);
 
       arr[i] = (arr[i - 1] + (a.charAt(i) - 'a' + 1) * p_power) % mod;
       ++i;
     }
-    System.out.println(Arrays.toString(arr));
   }
 
   static long power(long a, int b) {
