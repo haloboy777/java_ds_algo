@@ -19,7 +19,6 @@ public class EvenReverseLL {
     // insert it in remaining list
     ListNode x = node;
     ListNode evenList = null;
-    int i = 0;
     while (x != null && x.next != null) {
       evenList = x.next;
       x = x.next.next;
