@@ -3,19 +3,19 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Stack;
 
-public class CombinationSum {
+public class CombinationSumTwo {
 
   public static void main(String[] args) {
     ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(8);
     arr.add(10);
-    arr.add(6);
-    arr.add(11);
     arr.add(1);
-    arr.add(16);
-    arr.add(8);
+    arr.add(2);
+    arr.add(7);
+    arr.add(6);
+    arr.add(1);
+    arr.add(5);
 
-    ArrayList<ArrayList<Integer>> r = sum(arr, 28);
+    ArrayList<ArrayList<Integer>> r = sum(arr, 8);
     System.out.println(r.toString());
   }
 
@@ -28,7 +28,6 @@ public class CombinationSum {
     HashSet<ArrayList<Integer>> set = new HashSet<>();
     Collections.sort(list);
     solve(out, list, set, res, target, 0);
-
     return res;
   }
 
@@ -57,7 +56,7 @@ public class CombinationSum {
     for (int i = index; i < x.size(); i++) {
       // System.out.print(i + " -> ");
       out.push(x.get(i));
-      solve(out, x, set, res, target, i);
+      solve(out, x, set, res, target, i + 1);
       out.pop();
     }
   }
