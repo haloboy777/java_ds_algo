@@ -6,7 +6,7 @@ public class StrStr {
   public static void main(String[] args) {
     String a =
       "aabaaaababaabbbabbabbbaabababaaaaaababaaabbabbabbabbaaaabbbbbbaabbabbbbbabababbaaabbaabbbababbb";
-    String match = "bba";
+    String match = "bbaaa";
     // I need to solve this problem with string hashing
     initalize(a);
     long p_power = 1;
