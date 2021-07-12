@@ -1,3 +1,4 @@
+package dev.ayushsingh.stack;
 import java.util.ArrayList;
 import java.util.Stack;
 

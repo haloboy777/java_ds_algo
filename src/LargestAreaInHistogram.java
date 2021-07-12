@@ -134,7 +134,9 @@ public class LargestAreaInHistogram {
     s.push(-1);
     for (int i = 0; i < arr.size(); i++) {
       while (s.peek() != -1 && arr.get(s.peek()) >= arr.get(i)) {
-        maxArea = Math.max(maxArea, arr.get(s.pop()) * (i - s.peek() - 1));
+        int oldHeightIndex = s.pop();
+        int newHeightIndex = s.peek();
+        maxArea = Math.max(maxArea, arr.get(oldHeightIndex) * (i - newHeightIndex - 1));
       }
       s.push(i);
     }
