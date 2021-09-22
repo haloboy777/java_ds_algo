@@ -5,7 +5,7 @@ import java.util.*;
 public class KSmallestNumInTree {
 
   public static void main(String[] args) {
-    TreeNode root = new TreeNode(8);
+    BSTNode root = new BSTNode(8);
     root.insert(root, 3);
     root.insert(root, 10);
     root.insert(root, 1);
@@ -19,11 +19,11 @@ public class KSmallestNumInTree {
     System.out.println(kthSmallestEl(root, 7));
   }
 
-  static int kthSmallestEl(TreeNode x, int k) {
+  static int kthSmallestEl(BSTNode x, int k) {
     if (x == null) return -1;
 
     // run inOrderTraversal till k and then return the num
-    Stack<TreeNode> s = new Stack<>();
+    Stack<BSTNode> s = new Stack<>();
     s.push(x);
     int i = 0;
     while (x != null || !s.isEmpty()) {

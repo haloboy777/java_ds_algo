@@ -5,7 +5,7 @@ import java.util.*;
 public class BinarySearchTree {
 
   public static void main(String[] args) {
-    TreeNode root = new TreeNode(8);
+    BSTNode root = new BSTNode(8);
     root.insert(root, 3);
     root.insert(root, 10);
     root.insert(root, 1);
@@ -14,7 +14,7 @@ public class BinarySearchTree {
     root.insert(root, 4);
     root.insert(root, 7);
     root.insert(root, 13);
-    TreeNode r2 = new TreeNode(8);
+    BSTNode r2 = new BSTNode(8);
     r2.insert(r2, 3);
     r2.insert(r2, 10);
     r2.insert(r2, 1);
@@ -49,7 +49,7 @@ public class BinarySearchTree {
     // levelOrderNewLine(root);
     // levelOrderZigZagPrint(root);
     // levelOrderNewLine2(root);
-    // TreeNode x = mirrorTree(root);
+    // BSTNode x = mirrorTree(root);
     // System.out.println(countSize(root));
     // System.out.println(maxDepth(root));
     // System.out.println(levelOrderZigZag(root).toString());
@@ -89,10 +89,10 @@ public class BinarySearchTree {
   static int ceil, floor;
   static int state;
 
-  // static TreeNode predecessor, successor;
+  // static BSTNode predecessor, successor;
   // static int state;
 
-  static void ceilAndFloor(TreeNode x, int data) {
+  static void ceilAndFloor(BSTNode x, int data) {
     if (x == null) return;
 
     if (x.data > data) {
@@ -107,7 +107,7 @@ public class BinarySearchTree {
     if (x.right != null) ceilAndFloor(x.right, data);
   }
 
-  // static void predecessorAndSuccessor(TreeNode x, int data) {
+  // static void predecessorAndSuccessor(BSTNode x, int data) {
   //   if (state == 0) {
   //     if (x.data == data) state = 1; else predecessor = x;
   //   } else if (state == 1) {
@@ -118,7 +118,7 @@ public class BinarySearchTree {
   //   if (x.right != null) predecessorAndSuccessor(x.right, data);
   // }
 
-  static Boolean areSimillar(TreeNode x, TreeNode y) {
+  static Boolean areSimillar(BSTNode x, BSTNode y) {
     if (
       !(
         (x.left != null && y.left != null) || (x.left == null && y.left == null)
@@ -144,7 +144,7 @@ public class BinarySearchTree {
     return true;
   }
 
-  static int distanceBetweenNodes(TreeNode x, int d1, int d2) {
+  static int distanceBetweenNodes(BSTNode x, int d1, int d2) {
     ArrayList<Integer> p1 = nodeToRootPath(x, d1);
     ArrayList<Integer> p2 = nodeToRootPath(x, d2);
 
@@ -162,7 +162,7 @@ public class BinarySearchTree {
     return i + j;
   }
 
-  static int lowestCommonAncestor(TreeNode x, int d1, int d2) {
+  static int lowestCommonAncestor(BSTNode x, int d1, int d2) {
     ArrayList<Integer> p1 = nodeToRootPath(x, d1);
     ArrayList<Integer> p2 = nodeToRootPath(x, d2);
 
@@ -175,7 +175,7 @@ public class BinarySearchTree {
     return p1.get(i + 1);
   }
 
-  static ArrayList<Integer> nodeToRootPath(TreeNode x, int nodeData) {
+  static ArrayList<Integer> nodeToRootPath(BSTNode x, int nodeData) {
     ArrayList<Integer> k = new ArrayList<>();
     if (x == null) return k;
 
@@ -196,7 +196,7 @@ public class BinarySearchTree {
     return k;
   }
 
-  static Boolean findInTree(TreeNode x, int data) {
+  static Boolean findInTree(BSTNode x, int data) {
     if (x == null) return false;
 
     if (x.data == data) return true;
@@ -208,7 +208,7 @@ public class BinarySearchTree {
     return res;
   }
 
-  static TreeNode removeLeaves(TreeNode x) {
+  static BSTNode removeLeaves(BSTNode x) {
     /**
      * Need to remove the leaves in pre recursion part cause if we remove the leaf after comming out of recurrsion then
      * the parent whoes children were recently deleted will also be considered as a leaf and
@@ -223,28 +223,28 @@ public class BinarySearchTree {
     return x;
   }
 
-  static TreeNode mirrorTree(TreeNode x) {
+  static BSTNode mirrorTree(BSTNode x) {
     if (x == null) return x;
 
     if (x.left != null) x.left = mirrorTree(x.left);
     if (x.right != null) x.right = mirrorTree(x.right);
 
-    TreeNode a = x.right;
+    BSTNode a = x.right;
     x.right = x.left;
     x.left = a;
 
     return x;
   }
 
-  static void levelOrderZigZagPrint(TreeNode x) {
+  static void levelOrderZigZagPrint(BSTNode x) {
     if (x == null) return;
-    Stack<TreeNode> s1 = new Stack<>();
-    Stack<TreeNode> s2 = new Stack<>();
+    Stack<BSTNode> s1 = new Stack<>();
+    Stack<BSTNode> s2 = new Stack<>();
     s1.add(x);
     int level = 1;
     while (!s1.isEmpty() || !s2.isEmpty()) {
       if (!s1.isEmpty()) {
-        TreeNode a = s1.pop();
+        BSTNode a = s1.pop();
         System.out.print(a.data + " ");
         if (level % 2 == 0) {
           if (a.left != null) s2.push(a.left);
@@ -262,32 +262,32 @@ public class BinarySearchTree {
     }
   }
 
-  static void levelOrderNewLine2(TreeNode x) {
+  static void levelOrderNewLine2(BSTNode x) {
     if (x == null) return;
-    Deque<TreeNode> q = new ArrayDeque<>();
+    Deque<BSTNode> q = new ArrayDeque<>();
     q.add(x);
-    q.add(new TreeNode(Integer.MIN_VALUE));
+    q.add(new BSTNode(Integer.MIN_VALUE));
     while (q.size() > 1) {
-      TreeNode a = q.pop();
+      BSTNode a = q.pop();
       if (Integer.compare(a.data, Integer.MIN_VALUE) != 0) {
         System.out.print(a.data + " ");
         if (a.left != null) q.add(a.left);
         if (a.right != null) q.add(a.right);
       } else {
-        q.add(new TreeNode(Integer.MIN_VALUE));
+        q.add(new BSTNode(Integer.MIN_VALUE));
         System.out.println();
       }
     }
   }
 
-  static void levelOrderNewLine(TreeNode x) {
+  static void levelOrderNewLine(BSTNode x) {
     if (x == null) return;
-    Deque<TreeNode> q1 = new ArrayDeque<>();
-    Deque<TreeNode> q2 = new ArrayDeque<>();
+    Deque<BSTNode> q1 = new ArrayDeque<>();
+    Deque<BSTNode> q2 = new ArrayDeque<>();
     q1.add(x);
     while (!q1.isEmpty() || !q2.isEmpty()) {
       if (!q1.isEmpty()) {
-        TreeNode a = q1.pop();
+        BSTNode a = q1.pop();
         System.out.print(a.data + " ");
         if (a.left != null) q2.add(a.left);
         if (a.right != null) q2.add(a.right);
@@ -299,13 +299,13 @@ public class BinarySearchTree {
     }
   }
 
-  static void maxVal(TreeNode x) {
+  static void maxVal(BSTNode x) {
     while (x.right != null) x = x.right;
 
     System.out.println(x.data);
   }
 
-  static int countSize(TreeNode x) {
+  static int countSize(BSTNode x) {
     int s = 0;
 
     if (x.left != null) s += countSize(x.left);
@@ -315,7 +315,7 @@ public class BinarySearchTree {
     return s;
   }
 
-  static void displayEular(TreeNode x) {
+  static void displayEular(BSTNode x) {
     String val = x.data + " --> ";
     if (x.left != null) val += x.left.data;
     if (x.right != null) val += " , " + x.right.data;
@@ -327,7 +327,7 @@ public class BinarySearchTree {
     if (x.right != null) displayEular(x.right);
   }
 
-  static int maxDepth(TreeNode x) {
+  static int maxDepth(BSTNode x) {
     if (x == null) return 0;
     if (x.left == null && x.right == null) {
       return 1;
@@ -336,12 +336,12 @@ public class BinarySearchTree {
     }
   }
 
-  static ArrayList<Integer> reverseLevelOrder(TreeNode x) {
+  static ArrayList<Integer> reverseLevelOrder(BSTNode x) {
     ArrayList<Integer> res = new ArrayList<>();
     if (x == null) return res;
-    Queue<TreeNode> q = new ArrayDeque<>();
+    Queue<BSTNode> q = new ArrayDeque<>();
     q.add(x);
-    TreeNode a;
+    BSTNode a;
     while (!q.isEmpty()) {
       a = q.poll();
       res.add(a.data);
@@ -352,15 +352,15 @@ public class BinarySearchTree {
     return res;
   }
 
-  static ArrayList<ArrayList<Integer>> levelOrderZigZag(TreeNode x) {
+  static ArrayList<ArrayList<Integer>> levelOrderZigZag(BSTNode x) {
     ArrayList<ArrayList<Integer>> res = new ArrayList<>();
     if (x == null) return res;
     ArrayList<Integer> r = new ArrayList<>();
-    Stack<TreeNode> s1 = new Stack<>();
-    Stack<TreeNode> s2 = new Stack<>();
+    Stack<BSTNode> s1 = new Stack<>();
+    Stack<BSTNode> s2 = new Stack<>();
 
     s1.add(x);
-    TreeNode a;
+    BSTNode a;
     int level = 0;
     while (!s1.isEmpty()) {
       ++level;
@@ -383,10 +383,10 @@ public class BinarySearchTree {
     return res;
   }
 
-  static TreeNode inOrderSuccessor(TreeNode node, int data) {
+  static BSTNode inOrderSuccessor(BSTNode node, int data) {
     if (node == null) return node;
 
-    TreeNode x = find(node, data);
+    BSTNode x = find(node, data);
 
     if (x.right != null) {
       x = findMin(x.right);
@@ -398,7 +398,7 @@ public class BinarySearchTree {
     return x;
   }
 
-  static TreeNode findMin(TreeNode x) {
+  static BSTNode findMin(BSTNode x) {
     if (x == null) return null;
     while (x.left != null) {
       x = x.left;
@@ -406,7 +406,7 @@ public class BinarySearchTree {
     return x;
   }
 
-  static TreeNode find(TreeNode x, int data) {
+  static BSTNode find(BSTNode x, int data) {
     if (x == null) return null;
     while (x != null) {
       if (x.data == data) {
@@ -420,7 +420,7 @@ public class BinarySearchTree {
     return x;
   }
 
-  static TreeNode removeHalfNodes(TreeNode root) {
+  static BSTNode removeHalfNodes(BSTNode root) {
     if (root == null) return root;
 
     if (root.left != null && root.right != null) {
@@ -437,15 +437,15 @@ public class BinarySearchTree {
     return root;
   }
 
-  static boolean checkTwoSum(TreeNode node, int sum) {
+  static boolean checkTwoSum(BSTNode node, int sum) {
     if (node == null) return false;
 
-    Stack<TreeNode> s = new Stack<>();
+    Stack<BSTNode> s = new Stack<>();
     HashSet<Integer> set = new HashSet<>();
     s.push(node);
     set.add(node.data);
     while (!s.isEmpty()) {
-      TreeNode x = s.pop();
+      BSTNode x = s.pop();
       if (set.contains(sum - x.data)) return true;
       set.add(x.data);
       if (x.right != null) s.push(x.right);
@@ -455,11 +455,11 @@ public class BinarySearchTree {
     return false;
   }
 
-  static void inOrderIterative(TreeNode root) {
+  static void inOrderIterative(BSTNode root) {
     if (root == null) return;
 
-    Stack<TreeNode> s = new Stack<TreeNode>();
-    TreeNode x = root;
+    Stack<BSTNode> s = new Stack<BSTNode>();
+    BSTNode x = root;
 
     while (x != null || !s.isEmpty()) {
       while (x != null) {
@@ -472,10 +472,10 @@ public class BinarySearchTree {
     }
   }
 
-  static ArrayList<Integer> getPathBST(TreeNode root, int val) {
+  static ArrayList<Integer> getPathBST(BSTNode root, int val) {
     ArrayList<Integer> res = new ArrayList<>();
     if (root == null) return res;
-    TreeNode x = root;
+    BSTNode x = root;
     while (x != null) {
       res.add(x.data);
       if (x.data == val) {
@@ -489,12 +489,12 @@ public class BinarySearchTree {
     return res;
   }
 
-  static void preOrderIterative(TreeNode node) {
+  static void preOrderIterative(BSTNode node) {
     if (node == null) return;
-    Stack<TreeNode> s = new Stack<>();
+    Stack<BSTNode> s = new Stack<>();
     s.push(node);
     while (!s.isEmpty()) {
-      TreeNode x = s.pop();
+      BSTNode x = s.pop();
       System.out.print(x.data + " ");
       if (x.right != null) s.push(x.right);
       if (x.left != null) s.push(x.left);
@@ -516,33 +516,33 @@ public class BinarySearchTree {
     return true;
   }
 
-  static void levelOrder(TreeNode node) {
+  static void levelOrder(BSTNode node) {
     if (node == null) return;
-    Deque<TreeNode> q = new LinkedList<>();
+    Deque<BSTNode> q = new LinkedList<>();
     q.push(node);
     while (!q.isEmpty()) {
-      TreeNode cur = q.pop();
+      BSTNode cur = q.pop();
       System.out.println(cur.data);
       if (cur.left != null) q.addLast(cur.left);
       if (cur.right != null) q.addLast(cur.right);
     }
   }
 
-  static void preOrder(TreeNode node) {
+  static void preOrder(BSTNode node) {
     if (node == null) return;
     System.out.println(node.data);
     preOrder(node.left);
     preOrder(node.right);
   }
 
-  static void inOrder(TreeNode node) {
+  static void inOrder(BSTNode node) {
     if (node == null) return;
     inOrder(node.left);
     System.out.print(node.data + " ");
     inOrder(node.right);
   }
 
-  static void postOrder(TreeNode node) {
+  static void postOrder(BSTNode node) {
     if (node == null) return;
     postOrder(node.left);
     postOrder(node.right);

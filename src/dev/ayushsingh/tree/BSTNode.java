@@ -1,19 +1,19 @@
 package dev.ayushsingh.tree;
 
-public class TreeNode {
+public class BSTNode {
 
   public int data;
-  public TreeNode left, right;
+  public BSTNode left, right;
 
-  public TreeNode(int data) {
+  public BSTNode(int data) {
     this.data = data;
     left = null;
     right = null;
   }
 
-  public TreeNode insert(TreeNode node, int data) {
+  public BSTNode insert(BSTNode node, int data) {
     if (node == null) {
-      return new TreeNode(data);
+      return new BSTNode(data);
     } else if (data < node.data) {
       node.left = insert(node.left, data);
     } else if (data > node.data) {
