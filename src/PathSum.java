@@ -43,11 +43,9 @@ public class PathSum {
   static int pathToSum(TreeNode x, int sum, int target) {
     if (x == null) return 0;
     if (x.data + sum == target && x.left == null && x.right == null) return 1;
-
     if (pathToSum(x.left, sum + x.data, target) == 1) return 1;
-    if (pathToSum(x.right, sum + x.data, target) == 1) return 1;
 
-    return 0;
+    return pathToSum(x.right, sum + x.data, target);
   }
 
   static int hasPathSum(TreeNode A, int B) {
